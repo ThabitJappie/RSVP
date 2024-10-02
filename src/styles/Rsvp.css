@@ -1,0 +1,86 @@
+.rsvp-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.rsvp-options button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 10px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.rsvp-options button:hover {
+    background-color: #d0d0d0;
+}
+
+.rsvp-options .selected {
+    background-color: #6c63ff;
+    color: white;
+}
+
+.input-group {
+    margin: 20px 0;
+    text-align: left;
+}
+
+input, textarea, select {
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+textarea {
+    height: 80px;
+}
+
+.phone-input {
+    display: flex;
+}
+
+.phone-input select {
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100px;
+}
+
+.verification-method {
+    margin: 20px 0;
+}
+
+.verification-method p {
+    margin-bottom: 10px;
+}
+
+.verification-method label {
+    margin-right: 20px;
+    font-size: 18px;
+}
+
+.action-buttons {
+    margin-top: 30px;
+}
+
+.cancel-btn, .continue-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.cancel-btn {
+    background-color: #ff4b4b;
+    color: white;
+}
+
+.continue-btn {
+    background-color: #28a745;
+    color: white;
+}
