@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+iimport React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { auth, RecaptchaVerifier, signInWithPhoneNumber } from '../firebase'; // Ensure correct Firebase imports
 import '../styles/Rsvp.css'; // Import the CSS file for styles
