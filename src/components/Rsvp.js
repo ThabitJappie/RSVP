@@ -22,9 +22,8 @@ const Rsvp = () => {
     const [comment, setComment] = useState('');
     const [verificationCode, setVerificationCode] = useState(''); // For user input
     const [confirmationResult, setConfirmationResult] = useState(null); // Store Firebase confirmation result
-
-    // Add missing state for verificationMethod and setVerificationMethod
     const [verificationMethod, setVerificationMethod] = useState('SMS');
+    const [uploadedImage, setUploadedImage] = useState(null); // State for uploaded image from Pexels
 
     useEffect(() => {
         const storedEventDetails = JSON.parse(localStorage.getItem(eventId));
@@ -85,6 +84,13 @@ const Rsvp = () => {
         } else {
             alert(`You can only bring up to ${maxGuests} guests.`);
         }
+    };
+
+    const handleImageUpload = () => {
+        // Placeholder: Call Pexels API to fetch and allow image selection
+        // On success, update the uploaded image state
+        const exampleImage = 'https://images.pexels.com/photos/1234567/pexels-photo-1234567.jpeg';
+        setUploadedImage(exampleImage);
     };
 
     return (
@@ -157,6 +163,7 @@ const Rsvp = () => {
                             />
                         </div>
                     </div>
+
                     <div className="input-group">
                         <label htmlFor="attendees">Amount of Attendees</label>
                         <input
@@ -164,10 +171,11 @@ const Rsvp = () => {
                             id="attendees"
                             placeholder={`Number of attendees (Max: ${eventDetails.maxGuestsPerInvitee || 1})`}
                             value={attendees}
-                            onChange={handleAttendeesChange} // Validation based on maxGuestsPerInvitee
+                            onChange={handleAttendeesChange}
                             min="1"
                         />
                     </div>
+                    
                     <div className="input-group">
                         <label htmlFor="comment">Post Comment</label>
                         <textarea
@@ -176,6 +184,12 @@ const Rsvp = () => {
                             value={comment}
                             onChange={(e) => setComment(e.target.value)}
                         />
+                    </div>
+
+                    {/* Image Upload */}
+                    <div className="input-group">
+                        <button onClick={handleImageUpload}>Upload Image via Pexels</button>
+                        {uploadedImage && <img src={uploadedImage} alt="Uploaded" style={{ width: '100px' }} />}
                     </div>
 
                     <div className="verification-method">
@@ -211,6 +225,7 @@ const Rsvp = () => {
                             value={verificationCode}
                             onChange={(e) => setVerificationCode(e.target.value)}
                         />
+                        <p>Didn't receive your code? <button onClick={handleRSVPSubmit}>Resend it</button></p>
                     </div>
                     <button onClick={handleVerifyCode} className="verify-btn">
                         Verify Code
