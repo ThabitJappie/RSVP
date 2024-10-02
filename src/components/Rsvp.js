@@ -1,4 +1,4 @@
-iimport React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { auth, RecaptchaVerifier, signInWithPhoneNumber } from '../firebase'; // Ensure correct Firebase imports
 import '../styles/Rsvp.css'; // Import the CSS file for styles
@@ -25,6 +25,18 @@ const Rsvp = () => {
     const [verificationMethod, setVerificationMethod] = useState('SMS');
     const [uploadedImage, setUploadedImage] = useState(null); // State for uploaded image from Pexels
 
+    // Initialize recaptcha only once
+    useEffect(() => {
+        if (!window.recaptchaVerifier) {
+            window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
+                size: 'invisible',
+                callback: (response) => {
+                    console.log('Recaptcha solved');
+                }
+            }, auth);
+        }
+    }, []);
+
     useEffect(() => {
         const storedEventDetails = JSON.parse(localStorage.getItem(eventId));
         if (storedEventDetails) {
@@ -38,32 +50,25 @@ const Rsvp = () => {
         return <div>No event details available for RSVP.</div>;
     }
 
+    // Handle RSVP Submission with Firebase Phone Verification
     const handleRSVPSubmit = async () => {
         const fullPhoneNumber = `${countryCode}${phoneNumber}`;
 
         try {
-            // Ensure recaptcha container is available before creating the verifier
-            if (!window.recaptchaVerifier) {
-                window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
-                    'size': 'invisible',
-                    'callback': function (response) {
-                        console.log("Recaptcha Verified");
-                    }
-                }, auth);
-            }
-
+            // Ensure recaptcha container is available and verifier is set up
             const appVerifier = window.recaptchaVerifier;
 
             // Call Firebase's signInWithPhoneNumber method
             const result = await signInWithPhoneNumber(auth, fullPhoneNumber, appVerifier);
             setConfirmationResult(result);
-            alert(`Verification code sent via ${verificationMethod}`);
+            alert('Verification code sent!');
         } catch (error) {
             console.error('Failed to send verification code:', error);
             alert('Error sending verification code. Make sure your Firebase setup is correct.');
         }
     };
 
+    // Handle verification of the entered code
     const handleVerifyCode = async () => {
         try {
             await confirmationResult.confirm(verificationCode);
