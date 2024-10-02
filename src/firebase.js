@@ -3,7 +3,7 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCpHZowEZoQmZp9RZWfp--9W-hpRgAtOag",
+  apiKey: 
   authDomain: "rsvp-62fb3.firebaseapp.com",
   projectId: "rsvp-62fb3",
   storageBucket: "rsvp-62fb3.appspot.com",
