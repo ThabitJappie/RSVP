@@ -12,8 +12,8 @@ const firebaseConfig = {
   projectId: "rsvp-62fb3",
   storageBucket: "rsvp-62fb3.appspot.com",
   messagingSenderId: "118533972066",
-  appId: "1:118533972066:web:84a6c082d6fc096df6f13b",
-  measurementId: "G-7LTKKP1E35"
+  appId: "1:118533972066:web:1526d3faf605cce2f6f13b",
+  measurementId: "G-MMTKVPQD61"
 };
 
 // Initialize Firebase
